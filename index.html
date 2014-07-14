@@ -93,10 +93,12 @@ $('.execute').click(function() {
 	    success: function (data) {
 	      // alert(JSON.stringify(data));
 	      $('.response').empty().append('Executed data: '+JSON.stringify(data));
+	      alert("I GOT IT, I GOT IT!!!!")
 	    },
 	    error: function(data){
 	      // alert("Cannot get data");
 	      $('.response').empty().append('Cannot execute request: '+JSON.stringify(data));
+	      alert("I AIN'T GOT IT!")
 	    }
 	});
 });
