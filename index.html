@@ -1,0 +1,104 @@
+<html>
+<head>
+	<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
+	<style type="text/css">
+		body {
+			background:#cecece;
+		}
+		div.container {
+			width:920px;
+			padding:20px;
+			margin:25px auto;
+			background:#fff;
+			border:1px solid #dedede;
+			font-family:Helvetica, Arial, sans-serif;			
+		}
+		h1 {
+			font-size:21px;
+			color:#636F57;
+			font-family:Helvetica, Arial, sans-serif;			
+		}
+		hr {
+			color:#636F57;
+			border:1px solid #636F57;
+			background:#636F57;			
+		}
+		iframe {
+			width:100%;
+			border:1px solid #636F57;
+		}
+		a {
+			font-size:16px;
+			color:#636F57;
+			font-family:Helvetica, Arial, sans-serif;
+			text-decoration: none;
+		}
+		input[type="text"] {
+			height:25px;
+			color:#636F57;
+			font-family:Helvetica, Arial, sans-serif;
+			border:1px solid #636F57;
+			width:300px;
+			padding:5px;
+			margin-bottom:5px;
+		}
+		textarea {
+			width:300px;
+			padding:5px;
+			height:70px;
+			color:#636F57;
+			font-family:Helvetica, Arial, sans-serif;
+			border:1px solid #636F57;
+			margin-bottom:5px;
+		}
+		input[type="submit"] {
+			height:25px;
+			color:#636F57;
+			font-family:Helvetica, Arial, sans-serif;
+			border:1px solid #636F57;
+			width:300px;
+			padding:5px;
+			cursor:pointer;
+		}
+		.clear{
+			clear:both;
+			margin:0;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Curl Runner</h1>
+		<hr />
+			<input type="text" class="target" placeholder="Target URL" /><br />
+			<textarea name="values" class="values"></textarea><br />
+			<input type="submit" value="curl_exe" class="execute" />
+		<hr />
+		<div class="response">
+			Response....
+		</div>
+	</div>
+</body>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+$('.execute').click(function() {
+	var auth = document.domain+":421aa90e079fa326b6494f812ad13e79";
+	$.ajax({
+	    url: $('.target').val(),
+	    beforeSend: function(xhr) { 
+	      xhr.setRequestHeader("Authorization", auth); 
+	    },
+	    type: 'POST',
+	    data: $('.values').val(),
+	    success: function (data) {
+	      // alert(JSON.stringify(data));
+	      $('.response').empty().append('Executed data: '+JSON.stringify(data));
+	    },
+	    error: function(data){
+	      // alert("Cannot get data");
+	      $('.response').empty().append('Cannot execute request: '+JSON.stringify(data));
+	    }
+	});
+});
+</script>
+</html>
